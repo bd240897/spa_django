@@ -1,0 +1,52 @@
+
+<!-- ГЛАВНАЯ СТРАНИЦА -->
+
+<!-- extends - эта страница является расширением базовой (описывает того что нет) - в ней есь блоки-->
+{% extends './base.html' %}
+{% load static %} <!-- обязательно после extends -->
+
+<!--    TITLE УНИКАЛЬНЫЙ -->
+
+{% block title %}Главная страница моего блога{% endblock %}
+
+<!--    СЛАЙДЕР -->
+
+{% block header %}
+    {% include './block/slider.html' %}
+{% endblock %}
+
+<!--    ОСНОВНОЙ БЛОК КОНТЕНТА -->
+
+{% block content %}
+    <div class="container-fluid">
+      <h1 class="my-3 text-center">Главная страница</h1>
+      <div class="row">
+
+        <!-- Карточка 1 -->
+
+        <div class="col-md-6">
+          <div class="card mb-4 shadow-sm">
+            <img src="{% static 'img/third_img.jpg' %}" alt="" class="card-img-top">
+            <div class="card-body">
+              <h4 class="card-title">Первая карточка</h4>
+              <p class="card-text">Какой то текст. Какой то текст. Какой то текст. </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка 2 -->
+
+        <div class="col-md-6">
+          <div class="card mb-4 shadow-sm">
+            <img src="{% static 'img/borisov.jpg' %}" alt="" class="card-img-top">
+            <div class="card-body">
+              <h4 class="card-title">Вторая карточка</h4>
+              <p class="card-text">Описание меня. Описание меня. Описание меня. </p>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+{% endblock %}
