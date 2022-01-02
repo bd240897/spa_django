@@ -1,0 +1,54 @@
+{% extends './base.html' %}
+{% load static %}
+
+<!--ТИТУЛ-->
+
+{% block title %}{{ post.title }}{% endblock %}
+
+<!--ЗАГОЛОВОК-->
+
+{% block header %}
+    {% include './block/header.html' %}
+{% endblock %}
+
+<!--ТЕЛО ПОСТА-->
+
+{% block content %}
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-8">
+
+              <!--ХЛЕБНЫЕ КРОШКИ-->
+
+              <nav aria-label="breadcrumb" class="mt-4">
+                  <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">{{ post.h1 }}</li>
+                  </ol>
+              </nav>
+
+              <!-- ВЫВОД ПОЛЕЙ НАШЕЙ ЗАПИСИ -->
+
+              <img class="img-fluid rounded " src="{{ post.image.url }}" alt="">
+              <hr>
+              <p class="lead">
+              {{ post.content|safe }}
+              </p>
+              <hr>
+              <p class="lead text-right">Автор: {{ post.author }}</p>
+              <hr>
+              <p class="text-right">Опубликовано {{ post.created_at }}</p>
+              <hr>
+
+              <!--КОММЕНТАРИИ-->
+
+              {% include './block/comments.html' %}
+          </div>
+
+          <!--ХЛЕБНЫЕ КРОШКИ-->
+
+          {% include './block/aside.html' %}
+      </div>
+  </div>
+  </div>
+{% endblock %}
