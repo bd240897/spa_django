@@ -4,9 +4,8 @@
 <!-- Шапка сайта -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
      <!-- Иконки -->
-    <a href="#" class="navbar-brand">
-        <img src="#" width="30" height="30" alt="logo">
-    </a>
+
+    <a href="{% url 'home'%}" class="navbar-brand text-danger">Borisov</a>
 
     <!-- Кнопка гамбургер -->
     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -19,13 +18,13 @@
         <!-- Разделы -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a href="#" class="nav-link">Главная</a>
+                <a href="{% url 'home'%}" class="nav-link">Главная</a>
             </li>
             <li class="nav-item active">
-                <a href="#" class="nav-link">Достижения</a>
+                <a href="{% url 'achievements'%}" class="nav-link">Достижения</a>
             </li>
-            <li class="nav-item ">
-                <a href="#" class="nav-link">Контакты</a>
+            <li class="nav-item active">
+                <a href="{% url 'contacts'%}" class="nav-link">Контакты</a>
             </li>
         </ul>
     </div>

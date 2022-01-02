@@ -9,12 +9,6 @@
 
 {% block title %}Главная страница моего блога{% endblock %}
 
-<!--    СЛАЙДЕР -->
-
-{% block header %}
-    {% include './block/slider.html' %}
-{% endblock %}
-
 <!--    ОСНОВНОЙ БЛОК КОНТЕНТА -->
 
 {% block content %}
@@ -22,19 +16,50 @@
       <h1 class="my-3 text-center">Главная страница</h1>
       <div class="row">
 
-        <!-- Карточка 1 -->
+        <!-- ЛЕВАЯ КОЛОНКА-->
 
         <div class="col-md-6">
-          <div class="card mb-4 shadow-sm">
-            <img src="{% static 'img/third_img.jpg' %}" alt="" class="card-img-top">
+
+          <!-- КАРТТОЧКА 1 - Введение -->
+
+           <div class="card mb-4 shadow-sm">
+            <h4 class="card-header text-center">Приветствие</h4>
+            <img src="{% static 'img/website_cut.jpg' %}" alt="" class="card-img-top ">
             <div class="card-body">
-              <h4 class="card-title">Первая карточка</h4>
-              <p class="card-text">Какой то текст. Какой то текст. Какой то текст. </p>
+              <p class="card-text">
+                Добро пожаловать.
+              </p>
             </div>
           </div>
+
+          <!-- КАРТТОЧКА 2 - обучение -->
+
+          <div class="card mb-4 shadow-sm">
+            <h4 class="card-header text-center">Обучение</h4>
+            <img src="{% static 'img/study_cut.jpg' %}" alt="" class="card-img-top ">
+            <div class="card-body">
+              <p class="card-text">
+
+                <ul class="">
+                  <li class="">
+                    В 2019 году закончил бакалавриат КФ МГТУ им. Н. Э. Баумана по направлению
+                    "Конструирование и производство радиоэлектронной аппаратуры".
+                  </li>
+                  <li class="">
+                    В 2021 году закончил магистратуру МФТИ по специальности "Прикладные математика и физика". </p>
+                  </li>
+                  <li class="">
+                    В данный момент являюсь аспирантом МФТИ по специальности "Радиофизика". </p>
+                  </li>
+                </ul>
+
+              </p>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Карточка 2 -->
+        <!-- ПРАВАЯ КОЛОНКА -->
 
         <div class="col-md-6">
           <div class="card mb-4 shadow-sm">

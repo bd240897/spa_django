@@ -1,0 +1,86 @@
+{% extends './base.html' %}
+{% load static %}
+
+<!--    TITLE УНИКАЛЬНЫЙ -->
+
+{% block title %}Достижения{% endblock %}
+
+<!--    ОСНОВНОЙ БЛОК КОНТЕНТА -->
+
+{% block content %}
+  <div class="container">
+
+    <h1 class="my-3">Последние мои достижения</h1>
+    <div class="row">
+      {% for achieve in achieves_obj  %}
+        <div class="col-md-12">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <h4 class="card-title">{{ achieve.name }}</h4>
+              {{ achieve.description|safe|truncatechars:100 }}
+
+              <!-- ОТКРЫТЬ КОНКРЕТНУЮ СТАТЬЮ - подробнее -->
+
+              <div class="d-flex justify-content-between align-items-center">
+                <!-- сначала тег юрл - затем имя маршрута из urls.py а затем параметры (slug), можно юзать get_absolute_url  но сначала его нужно писать в моделе -->
+                <div class="btn-group">
+                  <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                </div>
+                <small class="text-muted">{{ achieve.data_start }} - {{ achieve.data_data_stop }}</small>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+
+<!-- ПАГИНАЦИЯ -->
+
+{% block pagination %}
+
+    <nav aria-label="Paginate me">
+      <ul class="pagination justify-content-center">
+
+        <!-- Предыдущий маркер -->
+
+        {% if achieves_obj.has_previous %}
+            <!-- Доступная ссылка на предыдущую страницу-->
+            <a class="page-link" href="?page={{ achieves_obj.previous_page_number }}" tabindex="-1">Предыдущая</a>
+        {% else %}
+            <!-- НЕдоступная ссылка на предыдущую страницу - disabled -->
+            <li class="page-item disabled">
+                <a class="page-link disabled" href="#" tabindex="-1">Предыдущая</a>
+            </li>
+        {% endif %}
+
+        <!-- page_range - диапазон страниц (1, 4) -->
+        {% for i in achieves_obj.paginator.page_range %}
+            <!-- number - текущая страница -->
+            {% if i == achieves_obj.number %}
+                <!-- Активная текущая страница - active-->
+                <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% else %}
+                <!-- НЕАктивная текущая страница-->
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        <!-- Следующий маркер -->
+
+        {% if achieves_obj.has_next %}
+            <!-- Доступная ссылку на предыдущую страницу-->
+            <a class="page-link" href="?page={{ achieves_obj.next_page_number }}">Следующая</a>
+        {% else %}
+            <!-- НЕдоступная ссылку на предыдущую страницу - disabled -->
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Следующая</a>
+            </li>
+        {% endif %}
+      </ul>
+    </nav>
+    <br>
+{% endblock %}
