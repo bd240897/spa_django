@@ -18,118 +18,90 @@
 <!--    ОСНОВНОЙ БЛОК КОНТЕНТА -->
 
 {% block content %}
-    <div class="container">
-      <h1 class="my-3">Последние записи блога</h1>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="{% static 'img/third_img.jpg' %}" alt="" class="card-img-top">
-            <div class="card-body">
-              <h4 class="card-title">Заголовок</h4>
-              <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое описание поста. </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
-                </div>
-                <small class="text-muted">22.10.2020</small>
-              </div>
+<div class="container">
+  <h1 class="my-3">Последние записи блога</h1>
+  <div class="row">
+    {% for post in page_obj  %}
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img src="media/{{ post.image }}" alt="" class="card-img-top">
+        <div class="card-body">
+          <h4 class="card-title">{{ post.h1 }}</h4>
+          {{ post.description|safe|truncatechars:100 }}
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="{% static 'img/second_image.jpg' %}" alt="" class="card-img-top">
-            <div class="card-body">
-              <h4 class="card-title">Заголовок</h4>
-              <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое описание поста. </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
-                </div>
-                <small class="text-muted">21.10.2020</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="{% static 'img/first_img.jpg' %}" alt="" class="card-img-top">
-            <div class="card-body">
-            <h4 class="card-title">Заголовок</h4>
-            <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое описание поста. </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
-                </div>
-                <small class="text-muted">20.10.2020</small>
-              </div>
-            </div>
-          </div>
-        </div>
-    
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="img/first_img.jpg" alt="" class="card-img-top">
-            <div class="card-body">
-              <h4 class="card-title">Заголовок</h4>
-              <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое описание поста. </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
-                </div>
-                <small class="text-muted">19.10.2020</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="img/second_image.jpg" alt="" class="card-img-top">
-            <div class="card-body">
-              <h4 class="card-title">Заголовок</h4>
-              <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое описание поста. </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
-                </div>
-                <small class="text-muted">18.10.2020</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="img/third_img.jpg" alt="" class="card-img-top">
-            <div class="card-body">
-              <h4 class="card-title">Заголовок</h4>
-              <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое описание поста. </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
-                </div>
-                <small class="text-muted">17.10.2020</small>
-              </div>
-            </div>
+            <small class="text-muted">{{ post.created_at }}</small>
           </div>
         </div>
       </div>
     </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
 
 <!--    ПАГИНАЦИЯ ГДЕ-ТО ЕСТЬ А ГДЕ-ТО НЕТУ -->
 
 {% block pagination %}
+    <div class="pagination justify-content-center">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </span>
+    </div>
+
+    <!-- ПАГИНАЦИЯ СВОИМИ РУКАМИ - отличие от стандартной actived = desabled-->
+
     <nav aria-label="Paginate me">
       <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1">Предыдущая</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Следующая</a>
-        </li>
+
+        <!-- Предыдущий маркер -->
+        <!-- ОПИСАНИЕ - доступная ссылка - нет класса, недоступная ссылка disabled, неактивная ссылка=доступная, активная active-->
+        <!-- ОПереключение страница - href="?page=1  -->
+
+        {% if page_obj.has_previous %}
+            <!-- Доступная ссылка на предыдущую страницу-->
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Предыдущая</a>
+        {% else %}
+            <!-- НЕдоступная ссылка на предыдущую страницу - disabled -->
+            <li class="page-item disabled">
+                <a class="page-link disabled" href="#" tabindex="-1">Предыдущая</a>
+            </li>
+        {% endif %}
+
+
+        <!-- page_range - диапазон страниц (1, 4) -->
+        {% for i in page_obj.paginator.page_range %}
+            <!-- number - текущая страница -->
+            {% if i == page_obj.number %}
+                <!-- Активная текущая страница - active-->
+                <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% else %}
+                <!-- НЕАктивная текущая страница-->
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        <!-- Следующий маркер -->
+
+        {% if page_obj.has_next %}
+            <!-- Доступная ссылку на предыдущую страницу-->
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+        {% else %}
+            <!-- НЕдоступная ссылку на предыдущую страницу - disabled -->
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Следующая</a>
+            </li>
+        {% endif %}
       </ul>
     </nav>
     <br>
