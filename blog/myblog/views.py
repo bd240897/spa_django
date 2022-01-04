@@ -6,6 +6,9 @@ from .forms import SigUpForm, SignInForm
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate
+from .forms import FeedBackForm
+from django.http import HttpResponse
+from django.core.mail import send_mail, BadHeaderError
 
 class MainView(View):
     """Вьюха главной страницы"""
@@ -92,4 +95,38 @@ class SignInView(View):
                 return HttpResponseRedirect('/myblog')
         return render(request, 'myblog/signin.html', context={
             'form': form,
+        })
+
+class FeedBackView(View):
+    """Вьюха контактов - написать мне"""
+    def get(self, request, *args, **kwargs):
+        form = FeedBackForm()
+        return render(request, 'myblog/contact.html', context={
+            'form': form,
+            'title': 'Написать мне'
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = FeedBackForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            from_email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            try:
+                # ошибка тут from_email - принадлежит мне - я там должен генерить ключ!!!
+                send_mail(f'От {name} | {subject}', message, from_email, ['bd240897@yandex.ru'])
+            except BadHeaderError:
+                return HttpResponse('Невалидный заголовок')
+            # используем короткое имя success
+            return HttpResponseRedirect('success')
+        return render(request, 'myblog/contact.html', context={
+            'form': form,
+        })
+
+class SuccessView(View):
+    """Вью страницы спасибо"""
+    def get(self, request, *args, **kwargs):
+        return render(request, 'myblog/success.html', context={
+            'title': 'Спасибо'
         })

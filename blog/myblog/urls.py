@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import MainView, PostDetailView, SignUpView, SignInView, RedirectTest
+from .views import MainView, PostDetailView, SignUpView, SignInView, RedirectTest, FeedBackView, SuccessView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
@@ -14,5 +14,9 @@ urlpatterns = [
     path('signin/', SignInView.as_view(), name='signin'),
     # выход используем готовый метод выхода из django
     path('signout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='signout', ),
+    path('contact/', FeedBackView.as_view(), name='contact'),
+    path('contact/success/', SuccessView.as_view(), name='success'),
+]
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
