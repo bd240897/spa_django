@@ -3,6 +3,7 @@ from django.views import View
 from django.http import HttpResponse
 from .models import Achieve
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 class HomeView(View):
     "Вьюха главной страницы"
@@ -43,3 +44,26 @@ class СontactsView(View):
 
     def get(self, request, *args, **kwargs):
         return render(request,'mysite/сontacts.html')
+
+class SearchAchieveView(View):
+    """Вьюха поиска по достижениям - только метод get"""
+
+    def get(self, request, *args, **kwargs):
+        # вытаскиваем парметры из азпроса
+        query = self.request.GET.get('q')
+        # icontains не может работать с None.
+        results = ""
+        if query:
+            # сам QuerySet - по полю h1 или полю content
+            QuerySet = Q(name__icontains=query) | Q(description__icontains=query) | Q(list_studied__icontains=query) | Q(benefit__icontains=query)
+            results = Achieve.objects.filter(QuerySet)
+        # пагинация
+        paginator = Paginator(results, 6)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'mysite/search_achievement.html', context={
+            'title': 'Поиск',
+            'results': page_obj,
+            'count': paginator.count
+        })
+

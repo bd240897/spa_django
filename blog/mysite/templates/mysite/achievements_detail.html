@@ -5,15 +5,28 @@
 
 {% block title %}Подробности достижения{% endblock %}
 
+<!--ЗАГОЛОВОК-->
+
+{% block header %}
+<div class="container-fluid home-slider">
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-color: #343a40!important">
+                <div class="carousel-caption d-none d-md-block">
+
+                <h1>{{achieve.name}}</h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblok %}
+
 <!--    ОСНОВНОЙ БЛОК КОНТЕНТА -->
 
 {% block content %}
-
-<!--ЗАГОЛОВОК-->
-
-<div class="container-fluid bg-warning p-2">
-    <h4 class="display-4 text-center"><b>{{achieve.name}}</b></h4>
-</div>
 
 <!-- ВЫВОД ПОЛЕЙ НАШЕЙ ЗАПИСИ -->
 
