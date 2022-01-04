@@ -4,28 +4,26 @@
 <!-- Шапка сайта -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
      <!-- Иконки -->
+    <div class="container-fluid">
+        <!-- БРЕНД>-->
 
-    <a href="{% url 'home'%}" class="navbar-brand text-danger">Borisov</a>
+        <a href="{% url 'home'%}" class="navbar-brand text-danger">Borisov</a>
 
-    <!-- Кнопка гамбургер -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <!-- Кнопка гамбургер -->
 
-    <div class="collaps e navbar-collapse" id="navbarSupportedContent">
-        <!-- Разделы -->
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a href="{% url 'home'%}" class="nav-link">Главная</a>
-            </li>
-            <li class="nav-item active">
-                <a href="{% url 'achievements'%}" class="nav-link">Достижения</a>
-            </li>
-            <li class="nav-item active">
-                <a href="{% url 'contacts'%}" class="nav-link">Контакты</a>
-            </li>
-        </ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collaps e navbar-collapse" id="navbarNav">
+            <!-- Разделы -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a href="{% url 'home'%}" class="nav-link active">Главная</a></li>
+                <li class="nav-item"><a href="{% url 'achievements'%}" class="nav-link active">Достижения</a></li>
+                <li class="nav-item"><a href="{% url 'contacts'%}" class="nav-link active">Контакты</a></li>
+            </ul>
+        </div>
     </div>
+
+
 </nav>

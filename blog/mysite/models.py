@@ -9,8 +9,12 @@ class Achieve(models.Model):
     name = models.CharField(max_length=200)
     data_start = models.DateField(blank=True, default=timezone.now)
     data_stop = models.DateField(blank=True, null=True)
+
     description = RichTextUploadingField(blank=True, null=True)
-    content = RichTextUploadingField(blank=True, null=True)
+    list_studied = RichTextUploadingField(blank=True, null=True)
+    links = RichTextUploadingField(blank=True, null=True)
+    benefit = RichTextUploadingField(blank=True, null=True)
+
     certificate = models.ImageField(blank=True, null=True)
 
     def __str__(self):

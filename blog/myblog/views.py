@@ -2,6 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .models import Post
 from django.core.paginator import Paginator
+from .forms import SigUpForm, SignInForm
+from django.contrib.auth import login
+from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate
 
 class MainView(View):
     """Вьюха главной страницы"""
@@ -36,3 +40,56 @@ class PostDetailView(View):
         return render(request, 'myblog/post_detail.html', context={
             'post': post
     })
+
+class SignUpView(View):
+    """Вьха формы регистрации"""
+    def get(self, request, *args, **kwargs):
+        form = SigUpForm()
+        return render(request, 'myblog/signup.html', context={
+            'form': form,
+        })
+
+    def post(self, request, *args, **kwargs):
+
+        # принимаем данные
+        form = SigUpForm(request.POST)
+
+        # проверяем форму на валидность.
+        if form.is_valid():
+            # метод описан в форму - возвращает нам authenticate пользователя
+            user = form.save()
+            if user is not None:
+                # залогиним пользователя
+                login(request, user)
+                # редирект на главную страницу
+                return HttpResponseRedirect('/myblog')
+        return render(request, 'myblog/signup.html', context={
+            'form': form,
+        })
+
+class RedirectTest(View):
+    """RedirectTest"""
+    def get(self, request, *args, **kwargs):
+        return HttpResponseRedirect('/myblog')
+
+class SignInView(View):
+    """Форма входа"""
+
+    def get(self, request, *args, **kwargs):
+        form = SignInForm()
+        return render(request, 'myblog/signin.html', context={
+            'form': form,
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/myblog')
+        return render(request, 'myblog/signin.html', context={
+            'form': form,
+        })

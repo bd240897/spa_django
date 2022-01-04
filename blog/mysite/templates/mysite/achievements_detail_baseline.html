@@ -1,0 +1,103 @@
+{% extends './base.html' %}
+{% load static %}
+
+<!--    TITLE УНИКАЛЬНЫЙ -->
+
+{% block title %}Подробности достижения{% endblock %}
+
+<!--    ОСНОВНОЙ БЛОК КОНТЕНТА -->
+
+{% block content %}
+
+<!--ЗАГОЛОВОК-->
+
+<div class="container-fluid bg-warning p-2">
+    <h4 class="display-4 text-center"><b>{{achieve.name}}</b></h4>
+</div>
+
+
+
+    <!-- ВЫВОД ПОЛЕЙ НАШЕЙ ЗАПИСИ -->
+<!--    <h4>{{achieve.name}}</h4>-->
+<!--&lt;!&ndash;    <img class="img-fluid rounded " src="media/{{achieve.certificate}}" alt="">&ndash;&gt;-->
+<!--    <hr>-->
+<!--    <p class="lead">-->
+<!--        {{ achieve.content|safe}}-->
+<!--    </p>-->
+<!--    <hr>-->
+<!--    <p class="text-left">Дата выполнения {{ achieve.data_start }} - {{ achieve.data_stop }}</p>-->
+<!--    <hr>-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-12 my-2">
+            <div class="card  border-success">
+              <h4 class="card-header text-center bg-success">Описание:</h4>
+              <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-12 my-2">
+            <div class="card border-success">
+              <h4 class="card-header text-center bg-success">Что было изучено:</h4>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">1. Импорт данных: -ручными скриптами и инструментами матлаб. </li>
+                <li class="list-group-item">2. Обработка данных: -обработка пропусков, -извлечение части данных, -категориальные данные.</li>
+                <li class="list-group-item">3. Настройка визуализации: -виды графиков -настройки визуализации -аннотации графиков</li>
+                <li class="list-group-item">4. Работа с нерегулярными данными: -импорт и визуализации \ -импорт данных из отдельных разделов текстового файла</li>
+                <li class="list-group-item">5. Специальная графика: -столбцовые гистограммы, диаграммы</li>
+                <li class="list-group-item">6. Изображения и видеофайлы: -считывание видео -разбитие на фреймы -изменение частоты кадров -изменение графических данных (размер) -работа с видеорядом -создание анимации (гифок) -получение кадров в видео</li>
+                <li class="list-group-item">7. Ускорение визуализации данных: -настройка рендеринга данных</li>
+                <li class="list-group-item">8. Итоговый проект</li>
+                <li class="list-group-item">
+                    <b>Github:</b>
+                    <a href="https://github.com/bd240897/nocvko_Graphics_in_MATLAB">https://github.com/bd240897/nocvko_Graphics_in_MATLAB</a>
+                </li>
+              </ul>
+            </div>
+        </div>
+
+        <div class="col-12 my-2">
+            <div class="card border-success">
+              <h4 class="card-header text-center bg-success">Полезность:</h4>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Субъективная оценка (3/10) </li>
+                <li class="list-group-item">использование параллельных вычислений в матлаб</li>
+                <li class="list-group-item">настройка графиков -инструмент импорта данных</li>
+                <li class="list-group-item"><b>Где применено:</b> Нет</li>
+              </ul>
+            </div>
+        </div>
+
+        <div class="col-12 my-2">
+            <div class="card border-success">
+              <h4 class="card-header text-center bg-success">Ссылки по теме:</h4>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <b>Документация markdown:</b>
+                    <a href="https://www.markdownguide.org/basic-syntax/">https://www.markdownguide.org/basic-syntax/</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Онлайн редактор:</b>
+                    <a href="https://stackedit.io">https://stackedit.io</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Конвертор MD в HTML:</b>
+                    <a href="https://markdowntohtml.com/">https://markdowntohtml.com/</a>
+                </li>
+                    <li class="list-group-item">
+                    <b>MD in github:</b>
+                    <a href="https://gist.github.com/Jekins/2bf2d0638163f1294637#Links">https://gist.github.com/Jekins/2bf2d0638163f1294637#Links</a>
+                </li>
+              </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends './base.html' %}
+{% load static %}
+
+<!--    TITLE УНИКАЛЬНЫЙ -->
+
+{% block title %}Подробности достижения{% endblock %}
+
+<!--    ОСНОВНОЙ БЛОК КОНТЕНТА -->
+
+{% block content %}
+
+<!--ЗАГОЛОВОК-->
+
+<div class="container-fluid bg-warning p-2">
+    <h4 class="display-4 text-center"><b>{{achieve.name}}</b></h4>
+</div>
+
+<!-- ВЫВОД ПОЛЕЙ НАШЕЙ ЗАПИСИ -->
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-12 my-2">
+            <div class="card  border-success">
+              <h4 class="card-header text-center bg-success">Описание:</h4>
+              <div class="card-body ">
+                  <p class="card-text">{{achieve.description|safe}}</p>
+              </div>
+            </div>
+        </div>
+
+        {% if achieve.list_studied == '' %}
+        {% else %}
+        <div class="col-12 my-2">
+            <div class="card border-success">
+              <h4 class="card-header text-center bg-success ">Что было изучено:</h4>
+              <div class="list_achieve">{{achieve.list_studied|safe}}</div>
+        </div>
+        {% endif %}
+
+        {% if achieve.benefit == '' %}
+        {% else %}
+        <div class="col-12 my-2">
+            <div class="card border-success">
+              <h4 class="card-header text-center bg-success">Полезность:</h4>
+              <div class="list_achieve">{{achieve.benefit|safe}}</div>
+        </div>
+        {% endif %}
+
+        {% if achieve.links == '' %}
+        {% else %}
+        <div class="col-12 my-2">
+            <div class="card border-success">
+              <h4 class="card-header text-center bg-success">Ссылки по теме:</h4>
+              <div class="list_achieve">{{achieve.links|safe}}</div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
