@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     # для раоты бибилиотеки django-ckeditor - она расширяет textfield
     'ckeditor',
     'ckeditor_uploader',
+    # теги
+    'taggit',
 ]
 
 MIDDLEWARE = [

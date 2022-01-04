@@ -29,6 +29,11 @@
           <h4 class="card-title">{{ post.h1 }}</h4>
           {{ post.description|safe|truncatechars:100 }}
 
+           <!--Вывод тегов-->
+          {% for tag in post.tag.all %}
+            <p><a href="{% url 'tag' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a></p>
+          {% endfor %}
+
           <!-- ОТКРЫТЬ КОНКРЕТНУЮ СТАТЬЮ - подробнее -->
 
           <div class="d-flex justify-content-between align-items-center">

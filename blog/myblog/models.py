@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
+from taggit.managers import TaggableManager
 
 # модель блога
 class Post(models.Model):
@@ -18,7 +19,8 @@ class Post(models.Model):
     created_at = models.DateField(default=timezone.now) #
     # user - готовый класс в django для Пользователей. по умолчанию в этом поле сохраняется дата именно момента создания поста.
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    tag = models.CharField(max_length=200)
+    # теге - отдельная таблица которую создает библиотека - foreignkey
+    tag = TaggableManager()
 
     def __str__(self):
         # для отображения в админке

@@ -10,6 +10,7 @@ from .forms import FeedBackForm
 from django.http import HttpResponse
 from django.core.mail import send_mail, BadHeaderError
 from django.db.models import Q
+from taggit.models import Tag
 
 class MainView(View):
     """Вьюха главной страницы"""
@@ -39,14 +40,20 @@ class MainView(View):
 
 class PostDetailView(View):
     """Вьюха поста"""
+
     def get(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Post, url=slug)
+        common_tags = Post.tag.most_common()
+        last_posts = Post.objects.all().order_by('-id')[:3]
         return render(request, 'myblog/post_detail.html', context={
-            'post': post
-    })
+            'post': post,
+            'common_tags': common_tags,
+            'last_posts': last_posts
+        })
 
 class SignUpView(View):
     """Вьха формы регистрации"""
+
     def get(self, request, *args, **kwargs):
         form = SigUpForm()
         return render(request, 'myblog/signup.html', context={
@@ -73,6 +80,7 @@ class SignUpView(View):
 
 class RedirectTest(View):
     """RedirectTest"""
+
     def get(self, request, *args, **kwargs):
         return HttpResponseRedirect('/myblog')
 
@@ -100,6 +108,7 @@ class SignInView(View):
 
 class FeedBackView(View):
     """Вьюха контактов - написать мне"""
+
     def get(self, request, *args, **kwargs):
         form = FeedBackForm()
         return render(request, 'myblog/contact.html', context={
@@ -127,6 +136,7 @@ class FeedBackView(View):
 
 class SuccessView(View):
     """Вью страницы спасибо"""
+
     def get(self, request, *args, **kwargs):
         return render(request, 'myblog/success.html', context={
             'title': 'Спасибо'
@@ -134,6 +144,7 @@ class SuccessView(View):
 
 class SearchResultsView(View):
     """Вьюха поиска по статьям"""
+
     def get(self, request, *args, **kwargs):
         return render(request, 'myblog/search.html', context={
             'title': 'Поиск'
@@ -161,4 +172,21 @@ class SearchResultsView(View):
             'title': 'Поиск',
             'results': page_obj,
             'count': paginator.count
+        })
+
+
+class TagView(View):
+    """Обрабокта тегов"""
+
+    def get(self, request, slug, *args, **kwargs):
+        # вытаскиваем тег по слагу - Tag - импортунли из библы
+        tag = get_object_or_404(Tag, slug=slug)
+        # ищем посты с тегом
+        posts = Post.objects.filter(tag=tag)
+        # не работает в новой Django - pip install --upgrade Django==3.2.11
+        common_tags = Post.tag.most_common()
+        return render(request, 'myblog/tag.html', context={
+            'title': f'#ТЕГ {tag}',
+            'posts': posts,
+            'common_tags': common_tags
         })

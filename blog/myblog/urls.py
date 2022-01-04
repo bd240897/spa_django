@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import MainView, PostDetailView, SignUpView, SignInView, RedirectTest, FeedBackView, SuccessView, SearchResultsView
+from .views import MainView, PostDetailView, SignUpView, SignInView, RedirectTest, FeedBackView, SuccessView, SearchResultsView, TagView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
@@ -18,6 +18,8 @@ urlpatterns = [
     path('contact/success/', SuccessView.as_view(), name='success'),
     # поиск по статьям
     path('search/', SearchResultsView.as_view(), name='search_results'),
+    # теги
+    path('tag/<slug:slug>/', TagView.as_view(), name="tag"),
 
 ]
 
