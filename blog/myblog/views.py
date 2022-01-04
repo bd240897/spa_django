@@ -11,6 +11,8 @@ from django.http import HttpResponse
 from django.core.mail import send_mail, BadHeaderError
 from django.db.models import Q
 from taggit.models import Tag
+from .forms import CommentForm
+from .models import Comment
 
 class MainView(View):
     """Вьюха главной страницы"""
@@ -45,10 +47,31 @@ class PostDetailView(View):
         post = get_object_or_404(Post, url=slug)
         common_tags = Post.tag.most_common()
         last_posts = Post.objects.all().order_by('-id')[:3]
+        # форма комментариев
+        comment_form = CommentForm()
         return render(request, 'myblog/post_detail.html', context={
             'post': post,
             'common_tags': common_tags,
-            'last_posts': last_posts
+            'last_posts': last_posts,
+            'comment_form': comment_form
+        })
+
+    def post(self, request, slug, *args, **kwargs):
+        comment_form = CommentForm(request.POST)
+        # проверка на валидность
+        if comment_form.is_valid():
+            # создание коммента
+            text = request.POST['text']
+            # сохраняем username авторизированного пользователя, если он не авторизирован, то сохранится None
+            username = self.request.user
+            # сохраняем наш пост.
+            post = get_object_or_404(Post, url=slug)
+            # сохраняем в БД
+            comment = Comment.objects.create(post=post, username=username, text=text)
+            # редирект на адрес источник запроса
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+        return render(request, 'myblog/post_detail.html', context={
+            'comment_form': comment_form
         })
 
 class SignUpView(View):

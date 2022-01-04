@@ -25,3 +25,20 @@ class Post(models.Model):
     def __str__(self):
         # для отображения в админке
         return self.title
+
+class Comment(models.Model):
+    """Модель для комментариев"""
+    # связь один-ко-многим, related_name - для QS по связанным таблицам - Post.objects.get(url=slug).comments.all()
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    # связь один-ко-многим
+    username = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_name')
+    text = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+
+    # ля сортировки комментариев.
+    class Meta:
+        ordering = ['-created_date']
+
+    # для админки
+    def __str__(self):
+        return self.text

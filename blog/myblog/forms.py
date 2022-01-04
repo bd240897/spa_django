@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from .models import Comment
 
 # наследуем его от класса Form
 class SigUpForm(forms.Form):
@@ -110,3 +111,19 @@ class FeedBackForm(forms.Form):
             'placeholder': "Ваше сообщение"
         })
     )
+
+
+class CommentForm(forms.ModelForm):
+    """Форма для комментария - на основе модели - унаследвоана от ModelForm"""
+    class Meta:
+        # model модель на основе которой мы хотим создать нашу форму
+        model = Comment
+        # перечисление полей формы, которые мы хотим отображать на странице.
+        fields = ('text',)
+        # виджеты оформления
+        widgets = {
+            'text': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 3
+            }),
+        }
