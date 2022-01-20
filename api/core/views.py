@@ -54,6 +54,14 @@ class TagDetailView(generics.ListAPIView):
 
 class TagView(generics.ListAPIView):
     """Получение списка тегов"""
+
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+    permission_classes = [permissions.AllowAny]
+
+class AsideView(generics.ListAPIView):
+    """Возвращает последние 5 записей"""
+
+    queryset = Post.objects.all().order_by('-id')[:5]
+    serializer_class = PostSerializer
     permission_classes = [permissions.AllowAny]
