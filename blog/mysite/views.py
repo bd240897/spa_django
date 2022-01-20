@@ -21,10 +21,12 @@ class AchievementsView(View):
 
     def get(self, request, *args, **kwargs):
         achieves = Achieve.objects.order_by('-data_start')
-        paginator = Paginator(achieves, 3)
+        paginator = Paginator(achieves, 6)
         # номер страницы
         page_number = request.GET.get('page')
         achieves_obj = paginator.get_page(page_number)
+        for achieve in achieves_obj:
+            print(111111, achieve.certificate == None)
         return render(request, 'mysite/achievements.html', context={'achieves_obj': achieves_obj})
 
 class AchievementDetailsView(View):

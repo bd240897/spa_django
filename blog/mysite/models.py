@@ -15,7 +15,8 @@ class Achieve(models.Model):
     links = RichTextUploadingField(blank=True, null=True)
     benefit = RichTextUploadingField(blank=True, null=True)
 
-    certificate = models.ImageField(blank=True, null=True)
+    certificate = models.ImageField(upload_to='img/achievements/', default='img/achievements/default.jpg', blank=True, null=True)
+    visible = models.BooleanField(blank=True, null=True)
 
     def __str__(self):
         # для отображения в админке

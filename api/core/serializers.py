@@ -5,6 +5,7 @@ from .models import Post
 # сериализаторы для тегов
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
 from django.contrib.auth.models import User
+from taggit.models import Tag
 
 # Сюрриализация - достать данные из БД, а затем преобразовать их в формат JSON. Этот процесс называется сериализацией.
 # будем преобразовывать экземпляры моделей в JSON и наоборот.
@@ -16,7 +17,7 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     #  добавить поле TagListSerializerField()
     tags = TagListSerializerField()
-    # получение именя по связаной модели - без этого выдаст нам id а не username
+    # получение именя по связаной модели - без этого выдаст нам id а не username (вложенные отношения)
     author = serializers.SlugRelatedField(slug_field="username", queryset=User.objects.all())
 
     class Meta:
@@ -32,3 +33,14 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
 
 # КАК РАБОТАЕТ - url - view - serializers - BD - JSON
 # сериализатор берет из БД данные и в соответствии с настройками сериализатора, возвращает нам данные в виде JSON.
+
+class TagSerializer(serializers.ModelSerializer):
+    """Серюлиазатор для списка тегов"""
+
+    class Meta:
+        model = Tag
+        fields = ("name",)
+        lookup_field = 'name'
+        extra_kwargs = {
+            'url': {'lookup_field': 'name'}
+        }

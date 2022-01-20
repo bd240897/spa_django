@@ -22,7 +22,7 @@
         </div>
     </div>
 </div>
-{% endblok %}
+{% endblock %}
 
 <!--    ОСНОВНОЙ БЛОК КОНТЕНТА -->
 
@@ -67,6 +67,17 @@
             <div class="card border-success">
               <h4 class="card-header text-center bg-success">Ссылки по теме:</h4>
               <div class="list_achieve">{{achieve.links|safe}}</div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if achieve.certificate == '' or achieve.certificate == 'img/achievements/default.jpg'%}
+        {% else %}
+        <div class="col-12 my-2">
+            <div class="card border-success">
+              <h4 class="card-header text-center bg-success">Сертификат:</h4>
+              <img src='{{achieve.certificate.url}}' alt="" class="card-img-bottom certificate_img mx-auto">
+              <div class="list_achieve">{{achieve.certificate}}</div>
             </div>
         </div>
         {% endif %}

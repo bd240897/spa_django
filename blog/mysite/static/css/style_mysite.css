@@ -48,3 +48,29 @@ footer {
     color: red;
     font-weight: bold;
 }
+
+/*страница home*/
+/*Перезагрузка кэша браузера ctrl+f5*/
+.gray_1{
+    background-color: rgb(173, 173, 173);
+}
+
+.gray_2{
+    background-color: rgb(224, 224, 224);
+}
+
+.certificate_img{
+  /* читать про это тут https://habr.com/ru/post/524918/*/
+  display: block;
+  width: 1000px;
+  height: auto;/
+  margin: 0 auto;
+}
+
+.img_1{
+  /* читать про это тут https://habr.com/ru/post/524918/*/
+  display: block;
+  width: 300px;
+  height: auto;/
+  margin: 0 auto;
+}

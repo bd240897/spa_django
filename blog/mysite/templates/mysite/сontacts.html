@@ -5,8 +5,36 @@
 
 {% block title %}Контакты{% endblock %}
 
+<!--ЗАГОЛОВОК-->
+
+{% block header %}
+<div class="container-fluid home-slider">
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-color: #343a40!important">
+                <div class="carousel-caption d-none d-md-block">
+
+                <h1>Контакты!</h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
 <!--    ОСНОВНОЙ БЛОК КОНТЕНТА -->
 
 {% block content %}
-ТУТ СКОРО БУДУТ КОНТАКТЫ
+<div class="container-fluid pt-3">
+<div class="card">
+  <h4 class="card-header text-center gray_1">Почта:</h4>
+  <div class="card-body introduction border text-center gray_2">
+    <p class="fs-4">Чтобы связаться со мной вы можете написать на почту: </p>
+    <a class="fs-4" href="mailto:borisov.dmitrii@phystech.edu">borisov.dmitrii@phystech.edu</a>
+  </div>
+</div>
+</div>
 {% endblock %}
