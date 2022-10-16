@@ -143,6 +143,8 @@ class CommentView(generics.ListCreateAPIView):
 # в чем разница ?
 # viewsets.ModelViewSet
 # generics.ListAPIView
-# APIView
+# APIView - обычная вьха где есть get и post
 # generics.GenericAPIView
 # generics.ListCreateAPIView
+
+# https://habr.com/ru/company/yandex_praktikum/blog/561696/

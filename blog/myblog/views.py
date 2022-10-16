@@ -87,12 +87,11 @@ class SignUpView(View):
 
         # принимаем данные
         form = SigUpForm(request.POST)
-
         # проверяем форму на валидность.
         if form.is_valid():
             # метод описан в форму - возвращает нам authenticate пользователя
             user = form.save()
-            if user is not None:
+            if user is not None: # request.user.is_anonymous: # user is not None:
                 # залогиним пользователя
                 login(request, user)
                 # редирект на главную страницу
