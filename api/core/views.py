@@ -94,7 +94,16 @@ class FeedBackView(APIView):
             from_email = data.get('email')
             subject = data.get('subject')
             message = data.get('message')
-            send_mail(f'От {name} | {subject}', message, from_email, ['amromashov@gmail.com'])
+            # TODO ascii cant encode
+            # send_mail('<Your subject>', '<Your message>', 'from@example.com', ['to@example.com'])
+            # send_mail(u'1111111111', u'message', u"from_email", [u'dima@mail.com'])
+            # from django.core.mail.message import EmailMessage
+            # msg = EmailMessage(
+            #     u"Wymagane zresetowanie hasła do GSMtasks",
+            #     u"Kliknij aby zresetować hasło",
+            #     u'from@example.com', [u'to@example.com'])
+            # msg.send()
+
             return Response({"success": "Sent"})
 
 class RegisterView(generics.GenericAPIView):
@@ -108,7 +117,7 @@ class RegisterView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
 
-        # в ответ вкладываем данные о только что созданном пользователе.
+        # в ответ вкладываем данные о только что созданном пользователе. context=self.get_serializer_context() - что это, какой то доп контекст
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "message": "Пользователь успешно создан",
@@ -131,7 +140,7 @@ class CommentView(generics.ListCreateAPIView):
 
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         # получение поределенного поста -  эндпойнт - http://localhost:8000/api/comments/<post_slug>/

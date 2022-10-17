@@ -17,21 +17,15 @@ from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-01)ktcvy@g-7y581!enz9yqe4di9t4!-009h4r-53q0gbosyp_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -110,31 +104,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = 'ru-ru'
-
-TIME_ZONE = 'Europe/Moscow'
-
 USE_I18N = True
-
-USE_L10N = True
-
+TIME_ZONE = 'Europe/Moscow'
+# USE_L10N = True
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = '/static/'
-
 MEDIA_URL = '/media/' #<- добавьте путь к папке с медифайлами
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # и путь до нее
 
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
@@ -149,15 +131,25 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=2),
 }
 
-CORS_ORIGIN_WHITELIST = ["http://localhost:8000", "http://127.0.0.1:8000"]
-# конец настроек JWT токена
-
-
 #настройки rest framework
 
 REST_FRAMEWORK = {
+    # Base API policies
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+    ],
+    'DEFAULT_THROTTLE_CLASSES': [],
+    'DEFAULT_CONTENT_NEGOTIATION_CLASS': 'rest_framework.negotiation.DefaultContentNegotiation',
+    'DEFAULT_METADATA_CLASS': 'rest_framework.metadata.SimpleMetadata',
+    'DEFAULT_VERSIONING_CLASS': None,
+
     "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework_simplejwt.authentication.JWTAuthentication"],
-    "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.DjangoModelPermissions",),
     'SEARCH_PARAM': 'q'
@@ -168,12 +160,8 @@ REST_FRAMEWORK = {
 # djangorestframework-simplejwt  - библиотека токена дял авторизации
 # django-cors-headers - позволяет обращаться к вашему django api из других доменов - Access-Control-Allow-Origin заголовок.
 
-# Рядом с MEDIA_ROOT
-
-CKEDITOR_UPLOAD_PATH = "uploads/"
-
 ####################################
-    ##  CKEDITOR CONFIGURATION ##
+#  CKEDITOR CONFIGURATION
 ####################################
 
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
@@ -200,9 +188,8 @@ CKEDITOR_CONFIGS = {
 }
 
 ###################################
-
-####################################
 # ФОРМА ОБРАТНЙО СВЯЗИ
+####################################
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -210,3 +197,20 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'Ваша почта'
 EMAIL_HOST_PASSWORD = 'Пароль который вы только тчо получили'
+
+###################################
+# CORS
+####################################
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+# https://www.youtube.com/watch?v=A4SrKBLXg_Q
+# https://stackoverflow.com/questions/35760943/how-can-i-enable-cors-on-django-rest-framework
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',
+    'http://127.0.0.1:8080',
+    'http://192.168.37.5:8080',
+]
+
+# what is it?
+CORS_ORIGIN_WHITELIST = ["http://localhost:8000", "http://127.0.0.1:8000"]
