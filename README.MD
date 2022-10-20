@@ -69,3 +69,19 @@ https://auth.nuxtjs.org/api/auth/
 https://pavelgonzales.medium.com/best-practices-авторизации-для-vue-8b769589001a
 https://emackovenko.ru/vue-js-vuex-jwt-autentifikaciya-instrukciya-prime/
 https://www.internet-technologies.ru/articles/obrabotka-autentifikacii-v-vue-s-vuex.html#header-45996-8
+
+
+# Мусор
+npm install -g create-nuxt-app
+npm install -g npm@6
+c:\Users\Дмитрий\AppData\Roaming\npm\node_modules\
+https://stackoverflow.com/questions/66893199/hanging-stuck-reifyprettier-timing-reifynodenode-modules-nrwl-workspace-comp
+% node --version 
+# 16.5
+% npm --version 
+# 7.19.1
+
+<!--  название страницы и есть имя прокидываемого параметра на нее -->
+
+
+
