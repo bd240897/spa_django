@@ -103,8 +103,10 @@ class FeedBackView(APIView):
             #     u"Kliknij aby zresetować hasło",
             #     u'from@example.com', [u'to@example.com'])
             # msg.send()
-
+            print("data", data)
             return Response({"success": "Sent"})
+        print("data", request.data)
+        return Response({"error": "some problem with data"}, status=400)
 
 class RegisterView(generics.GenericAPIView):
     """Регистрация"""
