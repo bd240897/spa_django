@@ -83,5 +83,8 @@ https://stackoverflow.com/questions/66893199/hanging-stuck-reifyprettier-timing-
 
 <!--  название страницы и есть имя прокидываемого параметра на нее -->
 
+# ДРУГИЕ ЗАМЕТКИ
+1. [readme api](./api/README.md)
+2. [readme nuxt](./blog_nuxt/README.md)
 
 

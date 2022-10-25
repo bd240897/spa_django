@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
+from setuptools.command.upload import upload
 from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 
@@ -11,7 +12,7 @@ class Post(models.Model):
     slug = models.SlugField()
     description = RichTextUploadingField()
     content = RichTextUploadingField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to="core/post_image/")
     created_at = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     tags = TaggableManager()

@@ -12,6 +12,7 @@ from rest_framework import filters
 from rest_framework.views import APIView
 from django.core.mail import send_mail
 from .models import Comment
+import urllib.parse
 
 class PageNumberSetPagination(pagination.PageNumberPagination):
     """Пагинация - наслед-ся от PageNumberPagination"""
@@ -57,10 +58,12 @@ class TagDetailView(generics.ListAPIView):
 
     def get_queryset(self):
         """Получаем пост по тегу"""
-
-        tag_slug = self.kwargs['tag_slug'].lower()
-        tag = Tag.objects.get(slug=tag_slug)
-        return Post.objects.filter(tags=tag)
+        # tag_slug = self.kwargs['tag_slug'].lower()
+        # tag = Tag.objects.get(slug=tag_slug)
+        # return Post.objects.filter(tags=tag)
+        # TODO почему то отправляется название тега а не слаг из vue
+        tag_slug = urllib.parse.unquote(self.kwargs['tag_slug'])
+        return Post.objects.filter(tags__name=tag_slug)
 
 class TagView(generics.ListAPIView):
     """Получение списка тегов"""
