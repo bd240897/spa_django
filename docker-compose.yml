@@ -13,7 +13,7 @@ services:
 #      - ./.env.dev
   front:
     # Берем Dockerfile из каталога app
-    build: ./blog_nuxt
+    build: ./blog_nuxt_v1
     # Запускаем тестовый сервер
     command: npm start
     ports:
