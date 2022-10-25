@@ -11,3 +11,10 @@ services:
     # Файл содержащий переменные для контейнера
 #    env_file:
 #      - ./.env.dev
+  front:
+    # Берем Dockerfile из каталога app
+    build: ./blog_nuxt
+    # Запускаем тестовый сервер
+    command: npm start
+    ports:
+      - "5000:5000"
