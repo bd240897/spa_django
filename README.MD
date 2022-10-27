@@ -70,6 +70,9 @@ https://pavelgonzales.medium.com/best-practices-авторизации-для-vu
 https://emackovenko.ru/vue-js-vuex-jwt-autentifikaciya-instrukciya-prime/
 https://www.internet-technologies.ru/articles/obrabotka-autentifikacii-v-vue-s-vuex.html#header-45996-8
 
+# запросы curl
+    sudo apt install curl
+    curl -L yandex.ru
 
 # Мусор
 npm install -g create-nuxt-app
