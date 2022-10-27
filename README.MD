@@ -108,6 +108,8 @@ https://stackoverflow.com/questions/30172605/how-do-i-get-into-a-docker-containe
 
     docker exec -it <mycontainer> bash
 
+# запуск vue by docker-compose
+back
 
 # ДРУГИЕ ЗАМЕТКИ
 1. [readme api](./api/README.md)
