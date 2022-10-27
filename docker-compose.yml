@@ -1,5 +1,7 @@
 version: '3.8'
 
+# https://www.youtube.com/watch?v=oOR-hPHnTC0
+
 services:
   web:
     # Берем Dockerfile из каталога app
@@ -8,6 +10,8 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
+    expose:
+      - 8000
     # Файл содержащий переменные для контейнера
 #    env_file:
 #      - ./.env.dev
@@ -17,4 +21,6 @@ services:
     # Запускаем тестовый сервер
     command: npm start
     ports:
-      - "5000:5000"
+      - "3000:3000"
+    expose:
+      - 3000
