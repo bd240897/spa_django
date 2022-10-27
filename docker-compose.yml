@@ -3,7 +3,7 @@ version: '3.8'
 # https://www.youtube.com/watch?v=oOR-hPHnTC0
 
 services:
-  web:
+  back:
     # Берем Dockerfile из каталога app
     build: ./api
     # Запускаем тестовый сервер

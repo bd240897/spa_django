@@ -75,6 +75,9 @@ https://www.internet-technologies.ru/articles/obrabotka-autentifikacii-v-vue-s-v
     curl -L yandex.ru
 
 # как у меня заработало
+    url and port django устанавливается в docker-compose
+    url and port nuxt устанавливается в env.nuxt
+
     blog_nuxt_v1/nuxt.config.js
         заменить baseURL: 'http://178.154.241.157:8000',
     blog_nuxt_v1/store/index.js
@@ -96,8 +99,17 @@ https://stackoverflow.com/questions/66893199/hanging-stuck-reifyprettier-timing-
 
 <!--  название страницы и есть имя прокидываемого параметра на нее -->
 
+# докер войти в контейнер и установить curl
+
+https://stackoverflow.com/questions/34571711/cant-run-curl-command-inside-my-docker-container
+
+    apk add curl
+https://stackoverflow.com/questions/30172605/how-do-i-get-into-a-docker-containers-shell
+
+    docker exec -it <mycontainer> bash
+
+
 # ДРУГИЕ ЗАМЕТКИ
 1. [readme api](./api/README.md)
 2. [readme nuxt](./blog_nuxt/README.md)
-
 
