@@ -79,8 +79,8 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: process.env.API_URL || 'http://localhost:8000', // 'http://back:8000', //'http://178.154.241.157:8000',// 'http://localhost:8000',
-    browserBaseURL: process.env.API_URL || 'http://localhost:8000', // 'http://back:8000', // 'http://178.154.241.157:8000', // "http://localhost:8000",
+    baseURL: process.env.NUXT_API_URL || 'http://localhost:8000', // 'http://back:8000', //'http://178.154.241.157:8000',// 'http://localhost:8000',
+    browserBaseURL: process.env.NUXT_API_URL || 'http://localhost:8000', // 'http://back:8000', // 'http://178.154.241.157:8000', // "http://localhost:8000",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

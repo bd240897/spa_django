@@ -107,6 +107,9 @@ https://stackoverflow.com/questions/34571711/cant-run-curl-command-inside-my-doc
 https://stackoverflow.com/questions/30172605/how-do-i-get-into-a-docker-containers-shell
 
     docker exec -it <mycontainer> bash
+https://www.baeldung.com/ops/docker-compose-interactive-shell
+
+    docker-compose exec server bash
 
 # запуск vue by docker-compose
 back
