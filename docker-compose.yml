@@ -15,6 +15,10 @@ services:
     # Файл содержащий переменные для контейнера
 #    env_file:
 #      - ./.env.dev
+    networks:
+      default:
+        aliases:
+          - back
   front:
     # Берем Dockerfile из каталога app
     build: ./blog_nuxt_v1
@@ -28,3 +32,7 @@ services:
       - ./.env.nuxt
     depends_on:
       - back
+    networks:
+      default:
+        aliases:
+          - front
