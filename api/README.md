@@ -25,13 +25,13 @@ https://stackoverflow.com/questions/16566069/url-decode-utf-8-in-python
     python manage.py migrate
 
 ### сохранение исходныз данных
-    // порядок не важен
-    python -Xutf8 manage.py dumpdata auth.user --indent 2 > user.json
-    python -Xutf8 manage.py dumpdata core --indent 2 > db.json
-    python -Xutf8 manage.py dumpdata taggit --indent 2 > taggit.json
+    # порядок не важен
+    python -Xutf8 manage.py dumpdata auth.user --indent 2 > example_data/user.json
+    python -Xutf8 manage.py dumpdata core --indent 2 > example_data/core.json
+    python -Xutf8 manage.py dumpdata taggit --indent 2 > example_data/taggit.json
 
 ### загрузка исзодныз данных
-    // порядок важен user > core > taggit
+    # порядок важен user > core > taggit
     python manage.py loaddata example_data/user.json
     python manage.py loaddata example_data/core.json
     python manage.py loaddata example_data/taggit.json

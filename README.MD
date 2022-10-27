@@ -74,6 +74,16 @@ https://www.internet-technologies.ru/articles/obrabotka-autentifikacii-v-vue-s-v
     sudo apt install curl
     curl -L yandex.ru
 
+# как у меня заработало
+    blog_nuxt_v1/nuxt.config.js
+        заменить baseURL: 'http://178.154.241.157:8000',
+    blog_nuxt_v1/store/index.js
+          заменить
+        axios: {
+            baseURL: 'http://178.154.241.157:8000',
+            browserBaseURL: 'http://178.154.241.157:8000', 
+        },
+
 # Мусор
 npm install -g create-nuxt-app
 npm install -g npm@6
