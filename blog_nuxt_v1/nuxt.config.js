@@ -85,5 +85,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  env:{
+    // NUXT_ENV_API_URL: 'http://62.84.117.17:8000',
+  },
 }
