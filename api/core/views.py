@@ -153,6 +153,16 @@ class CommentView(generics.ListCreateAPIView):
         post = Post.objects.get(slug=post_slug)
         return Comment.objects.filter(post=post)
 
+class TestView(generics.GenericAPIView):
+    """Профиль пользователя"""
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, *args,  **kwargs):
+        "Только гет запросы"
+        return Response({"massage": "good"}, status=404)
+
+
+
 ############
 # в чем разница ?
 # viewsets.ModelViewSet

@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import PostViewSet, TagDetailView, TagView, AsideView, FeedBackView, RegisterView, ProfileView, CommentView
+from .views import PostViewSet, TagDetailView, TagView, AsideView, FeedBackView, RegisterView, ProfileView, CommentView, \
+    TestView
 
 # переменную router и сохранили в нее DefaultRouter - БЕРЕТ ВСЮ РАБОТУ НА СЕБЯ
 router = DefaultRouter()
@@ -18,4 +19,5 @@ urlpatterns = [
     path('profile/', ProfileView.as_view()),
     path("comments/", CommentView.as_view()), # для создания
     path("comments/<slug:post_slug>/", CommentView.as_view()), # для получение
+    path("test/", TestView.as_view()), # для получение
 ]
